@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/stashknocker/Documents/Deep%20Decrypt/frontend/src/app/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return (\n    <main className=\"flex items-center justify-center min-h-screen\">\n      <span className=\"text-xl text-zinc-400\">Loading...</span>\n    </main>\n  );\n} "],"names":[],"mappings":";;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAK,WAAU;kBACd,cAAA,8OAAC;YAAK,WAAU;sBAAwB;;;;;;;;;;;AAG9C","debugId":null}}]
+}
