@@ -3,21 +3,24 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { renderRichText } from '@/utils/renderRichText';
+import styles from '@/styles/RichText.module.css';
 
-interface BlogPost {
-  id: number;
-  Title: string;
+import { StrapiPost } from '@/lib/api';
+
+interface BlogPost extends Omit<StrapiPost, 'documentId'> {
   Content: Array<{
     type: string;
     children: Array<{
       type: string;
       text: string;
+      bold?: boolean;
+      italic?: boolean;
+      underline?: boolean;
+      strikethrough?: boolean;
+      code?: boolean;
     }>;
   }>;
-  Slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
   Thumbnail?: {
     id: number;
     url: string;
@@ -90,14 +93,21 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           </div>
         )}
         
-        <div className="prose prose-lg max-w-none dark:prose-invert">
-          {post.Content.map((block: BlogPost['Content'][0], index: number) => (
-            <p key={index} className="mb-4">
-              {block.children.map((child: BlogPost['Content'][0]['children'][0], childIndex: number) => (
-                <span key={childIndex}>{child.text}</span>
-              ))}
-            </p>
-          ))}
+        <div className={`${styles.richText} max-w-3xl mx-auto`}>
+          {renderRichText(post.Content as unknown as Array<{
+            type: string;
+            children: Array<{
+              type: string;
+              text: string;
+              bold?: boolean;
+              italic?: boolean;
+              underline?: boolean;
+              strikethrough?: boolean;
+              code?: boolean;
+              [key: string]: unknown;
+            }>;
+            [key: string]: unknown;
+          }>)}
         </div>
 
         <Separator className="my-12" />
