@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "Review",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    }
+  }
+}

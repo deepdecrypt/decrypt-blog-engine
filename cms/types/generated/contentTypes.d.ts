@@ -373,9 +373,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGuideGuide extends Struct.CollectionTypeSchema {
+  collectionName: 'guides';
+  info: {
+    description: '';
+    displayName: 'Guide';
+    pluralName: 'guides';
+    singularName: 'guide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    attachments: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::guide.guide'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Struct.CollectionTypeSchema {
   collectionName: 'posts';
   info: {
+    description: '';
     displayName: 'Post';
     pluralName: 'posts';
     singularName: 'post';
@@ -385,16 +416,141 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Content: Schema.Attribute.Blocks;
+    content2: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
       Schema.Attribute.Private;
+    Metadescription: Schema.Attribute.Text;
+    Metatitle: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'Title'>;
     Thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    thumbnail2: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Struct.CollectionTypeSchema {
+  collectionName: 'reviews';
+  info: {
+    description: '';
+    displayName: 'Review';
+    pluralName: 'reviews';
+    singularName: 'review';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::review.review'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
+  collectionName: 'subscribers';
+  info: {
+    displayName: 'Subscriber';
+    pluralName: 'subscribers';
+    singularName: 'subscriber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscriber.subscriber'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    source: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiToolTagToolTag extends Struct.CollectionTypeSchema {
+  collectionName: 'tool_tags';
+  info: {
+    displayName: 'Tool Tag';
+    pluralName: 'tool-tags';
+    singularName: 'tool-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tool-tag.tool-tag'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiToolTool extends Struct.CollectionTypeSchema {
+  collectionName: 'tools';
+  info: {
+    description: '';
+    displayName: 'Tool';
+    pluralName: 'tools';
+    singularName: 'tool';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tool.tool'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+    tool_tag: Schema.Attribute.Relation<'oneToOne', 'api::tool-tag.tool-tag'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -910,7 +1066,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::guide.guide': ApiGuideGuide;
       'api::post.post': ApiPostPost;
+      'api::review.review': ApiReviewReview;
+      'api::subscriber.subscriber': ApiSubscriberSubscriber;
+      'api::tool-tag.tool-tag': ApiToolTagToolTag;
+      'api::tool.tool': ApiToolTool;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

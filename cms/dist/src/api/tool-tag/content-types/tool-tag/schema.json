@@ -1,0 +1,17 @@
+{
+    "kind": "collectionType",
+    "collectionName": "tool_tags",
+    "info": {
+        "singularName": "tool-tag",
+        "pluralName": "tool-tags",
+        "displayName": "Tool Tag"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "title": {
+            "type": "string"
+        }
+    }
+}

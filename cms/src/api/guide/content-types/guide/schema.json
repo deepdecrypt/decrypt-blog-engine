@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guides",
+  "info": {
+    "singularName": "guide",
+    "pluralName": "guides",
+    "displayName": "Guide",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "attachments": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+    "kind": "collectionType",
+    "collectionName": "tools",
+    "info": {
+        "singularName": "tool",
+        "pluralName": "tools",
+        "displayName": "Tool",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "thumbnail": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "title"
+        },
+        "description": {
+            "type": "string"
+        },
+        "tool_tag": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::tool-tag.tool-tag"
+        },
+        "link": {
+            "type": "string"
+        }
+    }
+}
